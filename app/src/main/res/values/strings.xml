@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">payoneer</string>
+    <string name="card_logo">Card Logo</string>
 </resources>
