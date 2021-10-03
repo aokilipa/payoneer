@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -25,13 +27,7 @@ import io.github.payoneer.ui.payment.PaymentMethodAdapter;
 public class MainFragment extends Fragment {
 
     private MainViewModel viewModel;
-
     private MainFragmentBinding binding;
-    private final PaymentMethodAdapter adapter = new PaymentMethodAdapter();
-
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
 
     @Nullable
     @Override
@@ -46,20 +42,11 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
         initBinding();
-        viewModel.listResultLiveData.observe(getViewLifecycleOwner(), listResult -> {
-                    binding.swipeRefresh.setRefreshing(false);
-                    adapter.setData(listResult.getNetworks().getApplicable());
-                }
-        );
-        viewModel.fetchPaymentMethods();
     }
 
     private void initBinding() {
-        binding.setLifecycleOwner(getViewLifecycleOwner());
-        binding.setViewModel(viewModel);
-        binding.recyclerPayment.setAdapter(adapter);
-        binding.swipeRefresh.setOnRefreshListener(() -> {
-            viewModel.fetchPaymentMethods();
+        binding.buttonPayment.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_mainFragment_to_paymentMethod);
         });
     }
 }

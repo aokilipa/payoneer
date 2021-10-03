@@ -41,7 +41,7 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
     }
 
 
-    static class PaymentViewHolder extends RecyclerView.ViewHolder {
+    protected static final class PaymentViewHolder extends RecyclerView.ViewHolder {
         private final ItemListPaymentBinding binding;
 
         public PaymentViewHolder(@NonNull ItemListPaymentBinding binding) {
