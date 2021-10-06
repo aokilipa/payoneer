@@ -25,7 +25,7 @@ public class PaymentViewModel extends ViewModel {
                 .fetchPaymentMethod()
                 .subscribeOn(Schedulers.io())
                 .subscribe(listResult -> {
-                    _listResultLiveData.postValue(ApiResource.success(listResult, null));
+                    _listResultLiveData.postValue(ApiResource.success(listResult));
                 }, this::handleErrors);
     }
 

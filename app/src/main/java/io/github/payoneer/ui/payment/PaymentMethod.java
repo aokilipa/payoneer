@@ -15,10 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import java.util.Collections;
 
 import io.github.payoneer.R;
-import io.github.payoneer.databinding.MainFragmentBinding;
 import io.github.payoneer.databinding.PaymentFragmentBinding;
-import io.github.payoneer.ui.main.MainFragment;
-import io.github.payoneer.ui.main.MainViewModel;
 
 public class PaymentMethod extends Fragment {
 

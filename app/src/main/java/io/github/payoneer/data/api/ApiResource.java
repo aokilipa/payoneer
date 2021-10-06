@@ -21,8 +21,8 @@ public class ApiResource<T> {
     }
 
 
-    public static <T> ApiResource<T> success(@NonNull T data, @Nullable String message) {
-        return new ApiResource<>(ApiState.SUCCESS, data, message);
+    public static <T> ApiResource<T> success(@NonNull T data) {
+        return new ApiResource<>(ApiState.SUCCESS, data, null);
     }
 
     public static <T> ApiResource<T> error(String message, @Nullable T data) {
