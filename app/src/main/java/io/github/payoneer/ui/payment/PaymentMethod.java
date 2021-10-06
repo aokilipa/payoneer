@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
+import java.util.Collections;
 
 import io.github.payoneer.R;
 import io.github.payoneer.databinding.MainFragmentBinding;
@@ -22,10 +25,6 @@ public class PaymentMethod extends Fragment {
     private PaymentViewModel viewModel;
     private PaymentFragmentBinding binding;
     private final PaymentMethodAdapter adapter = new PaymentMethodAdapter();
-
-    public static MainFragment newInstance() {
-        return new MainFragment();
-    }
 
     @Nullable
     @Override
@@ -40,9 +39,17 @@ public class PaymentMethod extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         viewModel = new ViewModelProvider(this).get(PaymentViewModel.class);
         initBinding();
-        viewModel.listResultLiveData.observe(getViewLifecycleOwner(), listResult -> {
+        viewModel.listResultLiveData.observe(getViewLifecycleOwner(), apiResource -> {
+                    switch (apiResource.status) {
+                        case ERROR:
+                            Toast.makeText(getActivity(), apiResource.message, Toast.LENGTH_SHORT).show();
+                            break;
+                        case LOADING:
+                        case SUCCESS:
+                            adapter.setData(apiResource.data != null ? apiResource.data.getNetworks().getApplicable() : Collections.emptyList());
+                            break;
+                    }
                     binding.swipeRefresh.setRefreshing(false);
-                    adapter.setData(listResult.getNetworks().getApplicable());
                 }
         );
         viewModel.fetchPaymentMethods();
@@ -52,8 +59,7 @@ public class PaymentMethod extends Fragment {
         binding.setLifecycleOwner(getViewLifecycleOwner());
         binding.setViewModel(viewModel);
         binding.recyclerPayment.setAdapter(adapter);
-        binding.swipeRefresh.setOnRefreshListener(() -> {
-            viewModel.fetchPaymentMethods();
-        });
+        binding.swipeRefresh.setOnRefreshListener(() -> viewModel.fetchPaymentMethods());
+        binding.errorView.actionButton.setOnClickListener(view -> viewModel.fetchPaymentMethods());
     }
 }
