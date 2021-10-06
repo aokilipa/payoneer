@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">payoneer</string>
+    <string name="app_name">Payoneer</string>
+    <string name="card_logo">Card Logo</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="greetings_text">Hello Antony,</string>
+    <string name="get_started">Get Started</string>
+    <string name="home_screen_title">Make Payment Easily With Payoneer</string>
+    <string name="err_something_went_wrong">Something went wrong, please try again</string>
+    <string name="oops">Oops!</string>
+    <string name="retry">Retry</string>
 </resources>

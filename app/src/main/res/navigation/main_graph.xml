@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="io.github.payoneer.ui.main.MainFragment"
+        android:label="Welcome to Payoneer,"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_paymentMethod"
+            app:destination="@id/paymentMethod" />
+    </fragment>
+    <fragment
+        android:id="@+id/paymentMethod"
+        android:name="io.github.payoneer.ui.payment.PaymentMethod"
+        android:label="Payment Methods"
+        tools:layout="@layout/payment_fragment" />
+</navigation>

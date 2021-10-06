@@ -1,16 +1,36 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Payoneer" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Payoneer" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/primary_light</item>
+        <item name="colorPrimaryVariant">@color/primary_variant</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@null</item>
         <!-- Customize your theme here. -->
+
+        <!--Material type attributes-->
+        <item name="textAppearanceHeadline1">@style/TextAppearance.MdcTypographyStyles.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.MdcTypographyStyles.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.MdcTypographyStyles.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.MdcTypographyStyles.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.MdcTypographyStyles.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.MdcTypographyStyles.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.MdcTypographyStyles.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.MdcTypographyStyles.Subtitle2</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.MdcTypographyStyles.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.MdcTypographyStyles.Body2</item>
+        <item name="textAppearanceButton">@style/TextAppearance.MdcTypographyStyles.Button</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.MdcTypographyStyles.Caption</item>
+        <item name="textAppearanceOverline">@style/TextAppearance.MdcTypographyStyles.Overline</item>
+
+        <!--Shape attributes-->
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.LargeComponent</item>
     </style>
 </resources>

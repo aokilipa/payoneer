@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="io.github.payoneer.ui.payment.PaymentViewModel" />
+
+        <import type="io.github.payoneer.data.ApiState" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.main.MainFragment">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_payment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/margin_padding_medium"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_list_payment" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <include
+            android:id="@+id/progress_bar"
+            layout="@layout/view_progress"
+            app:loading="@{viewModel.listResultLiveData.status==ApiState.LOADING}" />
+
+
+        <include
+            android:id="@+id/error_view"
+            layout="@layout/view_error_state"
+            app:errMessage="@{viewModel.listResultLiveData.message}"
+            app:isVisible="@{viewModel.listResultLiveData.status==ApiState.ERROR}"
+            app:title="@string/oops" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

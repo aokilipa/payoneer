@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">24dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="elevation">0.5dp</item>
+    </style>
+
+    <style name="ShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">4dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="elevation">1dp</item>
+    </style>
+
+    <style name="ShapeAppearance.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerSize">2dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="elevation">2dp</item>
+    </style>
+</resources>
