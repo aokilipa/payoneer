@@ -18,5 +18,19 @@
         android:id="@+id/paymentMethod"
         android:name="io.github.payoneer.ui.payment.PaymentMethod"
         android:label="Payment Methods"
-        tools:layout="@layout/payment_fragment" />
+        tools:layout="@layout/payment_fragment">
+        <action
+            android:id="@+id/action_paymentMethod_to_paymentDetail"
+            app:destination="@id/paymentDetail" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/paymentDetail"
+        android:name="io.github.payoneer.ui.payment.input.PaymentDetailFragment"
+        android:label="Payment Details"
+        tools:layout="@layout/payment_fragment">
+        <argument
+            android:name="applicable"
+            app:argType="io.github.payoneer.data.model.Applicable" />
+    </fragment>
 </navigation>
