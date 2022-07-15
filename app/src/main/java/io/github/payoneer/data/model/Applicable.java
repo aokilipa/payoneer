@@ -1,5 +1,10 @@
 package io.github.payoneer.data.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.test.core.os.Parcelables;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -10,7 +15,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Applicable {
+public class Applicable implements Parcelable {
 
     @SerializedName("code")
     @Expose
@@ -49,4 +54,47 @@ public class Applicable {
     @Expose
     private ContractData contractData;
 
+    public static final Creator<Applicable> CREATOR = new Creator<Applicable>() {
+        @Override
+        public Applicable createFromParcel(Parcel in) {
+            return new Applicable(in);
+        }
+
+        @Override
+        public Applicable[] newArray(int size) {
+            return new Applicable[size];
+        }
+    };
+
+    protected Applicable(Parcel in) {
+        code = in.readString();
+        label = in.readString();
+        method = in.readString();
+        grouping = in.readString();
+        registration = in.readString();
+        recurrence = in.readString();
+        byte tmpRedirect = in.readByte();
+        redirect = tmpRedirect == 0 ? null : tmpRedirect == 1;
+        byte tmpSelected = in.readByte();
+        selected = tmpSelected == 0 ? null : tmpSelected == 1;
+        operationType = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(code);
+        parcel.writeString(label);
+        parcel.writeString(method);
+        parcel.writeString(grouping);
+        parcel.writeString(registration);
+        parcel.writeString(recurrence);
+        parcel.writeByte((byte) (redirect == null ? 0 : redirect ? 1 : 2));
+        parcel.writeByte((byte) (selected == null ? 0 : selected ? 1 : 2));
+        parcel.writeString(operationType);
+    }
 }

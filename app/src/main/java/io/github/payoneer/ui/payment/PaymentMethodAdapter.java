@@ -1,6 +1,7 @@
 package io.github.payoneer.ui.payment;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,11 @@ import io.github.payoneer.databinding.ItemListPaymentBinding;
 public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdapter.PaymentViewHolder> {
 
     List<Applicable> applicableMethods = new ArrayList<>();
+    OnItemClickListener listener;
+
+    PaymentMethodAdapter(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     @NonNull
     @Override
@@ -26,7 +32,8 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
 
     @Override
     public void onBindViewHolder(@NonNull PaymentViewHolder holder, int position) {
-        holder.bind(applicableMethods.get(position));
+        holder.bind(applicableMethods.get(position), listener);
+
     }
 
     @Override
@@ -49,8 +56,9 @@ public class PaymentMethodAdapter extends RecyclerView.Adapter<PaymentMethodAdap
             this.binding = binding;
         }
 
-        public void bind(Applicable item) {
+        public void bind(Applicable item, OnItemClickListener listener) {
             binding.setItem(item);
+            binding.cardView.setOnClickListener(view -> listener.onClick(item));
         }
     }
 }

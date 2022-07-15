@@ -11,17 +11,21 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import java.util.Collections;
 
 import io.github.payoneer.R;
+import io.github.payoneer.data.model.Applicable;
+import io.github.payoneer.data.model.InputElement;
 import io.github.payoneer.databinding.PaymentFragmentBinding;
 
-public class PaymentMethod extends Fragment {
+public class PaymentMethod extends Fragment implements OnItemClickListener {
 
     private PaymentViewModel viewModel;
     private PaymentFragmentBinding binding;
-    private final PaymentMethodAdapter adapter = new PaymentMethodAdapter();
+    private final PaymentMethodAdapter adapter = new PaymentMethodAdapter(this);
 
     @Nullable
     @Override
@@ -58,5 +62,12 @@ public class PaymentMethod extends Fragment {
         binding.recyclerPayment.setAdapter(adapter);
         binding.swipeRefresh.setOnRefreshListener(() -> viewModel.fetchPaymentMethods());
         binding.errorView.actionButton.setOnClickListener(view -> viewModel.fetchPaymentMethods());
+    }
+
+    @Override
+    public void onClick(Applicable code) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("applicable", code);
+        Navigation.findNavController(requireView()).navigate(R.id.action_paymentMethod_to_paymentDetail, bundle);
     }
 }
